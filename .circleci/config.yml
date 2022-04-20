@@ -21,7 +21,6 @@ jobs:
       - checkout
       - restore_cache:
           keys: [backend-build]
-      - run:
       - run: npm i
       - run: npm run lint
       - save_cache:
