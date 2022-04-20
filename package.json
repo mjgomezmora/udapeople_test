@@ -1,3 +1,5 @@
-{
-  "lockfileVersion": 1
+"repository": {
+  "type": "git",
+  "url": "git://github.com/mjgomezmora/udapeople_test.git"
 }
+
