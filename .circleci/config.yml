@@ -8,8 +8,11 @@ jobs:
       - checkout
       - restore_cache:
           keys: [frontend-build]
-      - run: npm install
-      - run: npm run build
+      - run:
+          name: Build front-end
+          command: |
+            npm install
+            npm run build
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-build
@@ -21,14 +24,17 @@ jobs:
       - checkout
       - restore_cache:
           keys: [backend-build]
-      - run: npm install
-      - run: npm run build
+      - run:
+          name: Build back-end
+          command: |
+            npm install
+            npm run build
       - save_cache:
           paths: [backend/node_modules]
           key: backend-build
 
 workflows:
-  say-hello-workflow:
+  default:
     jobs:
       - build-frontend
       - build-backend
