@@ -8,11 +8,8 @@ jobs:
       - checkout
       - restore_cache:
           keys: [frontend-build]
-      - run:
-          name: Build front-end
-          command: |
-            # Your code here
-            exit 1
+      - run: npm i
+      - run: npm run lint
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-build
@@ -25,10 +22,8 @@ jobs:
       - restore_cache:
           keys: [backend-build]
       - run:
-          name: Back-end build
-          command: |
-             # Your code here
-             exit 1
+      - run: npm i
+      - run: npm run lint
       - save_cache:
           paths: [backend/node_modules]
           key: backend-build
