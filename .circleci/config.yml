@@ -11,7 +11,7 @@ jobs:
       - run: npm i
       - run: npm run lint
       - save_cache:
-          paths: [frontend/node_modules]
+          paths: [frontend/src]
           key: frontend-build
 
   build-backend:
@@ -24,7 +24,7 @@ jobs:
       - run: npm i
       - run: npm run lint
       - save_cache:
-          paths: [backend/node_modules]
+          paths: [backend/src]
           key: backend-build
 
 workflows:
