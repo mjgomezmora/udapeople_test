@@ -8,10 +8,10 @@ jobs:
       - checkout
       - restore_cache:
           keys: [frontend-build]
-      - run: npm i
-      - run: npm run lint
+      - run: npm install
+      - run: npm run build
       - save_cache:
-          paths: [frontend/src]
+          paths: [frontend/node_modules]
           key: frontend-build
 
   build-backend:
@@ -21,10 +21,10 @@ jobs:
       - checkout
       - restore_cache:
           keys: [backend-build]
-      - run: npm i
-      - run: npm run lint
+      - run: npm install
+      - run: npm run build
       - save_cache:
-          paths: [backend/src]
+          paths: [backend/node_modules]
           key: backend-build
 
 workflows:
