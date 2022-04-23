@@ -106,7 +106,7 @@ jobs:
           command: |
             cd backend
             npm install
-            npm audit fix --force
+            npm audit fix 
             npm install --save-dev webpack@5.72.0
             npm update path-parse --depth 3
             npm update kind-of --depth 14
