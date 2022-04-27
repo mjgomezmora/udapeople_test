@@ -206,10 +206,8 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            npm update ansible 
-            npm update npm 
-            npm update node 
-            npm update python 
+            nvm install node
+            pip3 install awscli --upgrade --user
       - run:
           name: Get backend url
           command: |
@@ -242,9 +240,10 @@ jobs:
           name: Install dependencies
           command: |
             apk add --update ansible 
-            apk add --update npm 
             apk add --update node 
-            apk add --update python 
+            apk add --update gzip 
+            apk add --update tar 
+            apk add --update npm 
       - run:
           name: Deploy backend
           command: |
@@ -319,9 +318,5 @@ workflows:
           requires: [deploy-infrastructure]
       - run-migrations:
           requires: [configure-infrastructure]
-      - deploy-frontend:
-          requires: [run-migrations]
       - deploy-backend:
           requires: [run-migrations]
-      - smoke-test:
-          requires: [deploy-backend, deploy-frontend]
