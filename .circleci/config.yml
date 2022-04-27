@@ -206,10 +206,10 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apt-get add --update ansible 
-            apt-get add --update npm 
-            apt-get add --update node 
-            apt-get add --update python 
+            npm update ansible 
+            npm update npm 
+            npm update node 
+            npm update python 
       - run:
           name: Get backend url
           command: |
@@ -234,7 +234,6 @@ jobs:
       - image: python:3.7-alpine3.11
     steps:
       - checkout
-      - run: yum install -y tar gzip
       - add_ssh_keys:
           fingerprints: ["f2:3f:59:96:2c:d0:1a:c7:98:5c:fe:9b:03:a0:07:fd"]
       - attach_workspace:
@@ -243,6 +242,9 @@ jobs:
           name: Install dependencies
           command: |
             apk add --update ansible 
+            apk add --update npm 
+            apk add --update node 
+            apk add --update python 
       - run:
           name: Deploy backend
           command: |
