@@ -2,6 +2,8 @@ version: 2.1
 
 commands:
   destroy-environment:
+    docker:
+      - image: amazon/aws-cli
     description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
     parameters:
       id: 
@@ -206,7 +208,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            nvm install node
+            pip3 install node
             pip3 install awscli --upgrade --user
       - run:
           name: Get backend url
@@ -239,7 +241,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apk add --update node 
+            pip3 install node
             apk add --update ansible 
             apk add --update gzip 
             apk add --update tar 
