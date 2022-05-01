@@ -202,6 +202,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/
+      - run: yum install -y tar gzip
       - run:
           name: Get backend url
           command: |
