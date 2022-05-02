@@ -204,6 +204,10 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
+          name: Install dependencies
+          command: |
+            sudo pip install npm          
+      - run:
           name: Get backend url
           command: |
             export BACKEND_IP=$(cat ~/project/.circleci/ansible/inventory.txt)
