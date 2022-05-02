@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  aws-cli: circleci/aws-cli@2.0.3
+
 commands:
   destroy-environment:
     description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
@@ -189,7 +192,7 @@ jobs:
           command: |   
             if grep -q "has been executed successfully." ~/project/backend/migrations_dump.txt
             then
-                # If you are using kvdb.io, generate the bucket ID "9GE4jRtKznmVKRfvdBABBe" in your local terminal first
+                # If you are using kvdb.io, generate the bucket ID "ED7b9GoXA1w8dMeuzoAkqk" in your local terminal first
                 curl https://kvdb.io/ED7b9GoXA1w8dMeuzoAkqk/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
             fi  
       - destroy-environment:
