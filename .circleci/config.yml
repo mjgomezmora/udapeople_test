@@ -206,7 +206,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            sudo pip install npm          
+            pip install npm          
       - run:
           name: Get backend url
           command: |
