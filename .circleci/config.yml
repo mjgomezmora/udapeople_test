@@ -314,6 +314,7 @@ jobs:
             cd .circleci/ansible
             cat inventory.txt
             export BACKEND_IP=$(awk 'NR == 1' inventory.txt)
+            echo "${BACKEND_IP}"
       - run:
           name: Backend smoke test.
           command: |
