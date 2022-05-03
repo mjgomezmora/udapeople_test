@@ -18,6 +18,27 @@ commands:
             aws cloudformation delete-stack --stack-name udapeople-backend-<< parameters.id >>
             aws cloudformation delete-stack --stack-name udapeople-frontend-<< parameters.id >>
 
+revert-migrations:
+  description: Revert the last migration
+  parameters:
+      workflow_id:
+          type: string      
+  steps:
+      - run:
+          name: Revert migrations
+          when: on_fail
+          command: |
+              # Your Memstash or kvdb.io GET URL code goes here
+              # Example: kvdb.io
+              SUCCESS=$(curl --insecure  https://kvdb.io/ED7b9GoXA1w8dMeuzoAkqk/migration_<< parameters.workflow_id >>)
+              # Logic for reverting the database state
+              if (( $SUCCESS == 1 ));
+              then
+                  cd ~/project/backend
+                  npm install
+                  npm run migration:revert
+              fi  
+
 jobs:
   build-frontend:
     docker:
@@ -150,6 +171,8 @@ jobs:
             - project/.circleci/ansible/inventory.txt
       - destroy-environment:
           id: ${CIRCLE_WORKFLOW_ID:0:7}
+      - revert-migrations:
+          id: ${CIRCLE_WORKFLOW_ID:0:7}          
 
   configure-infrastructure:
     docker:
@@ -172,6 +195,8 @@ jobs:
             ansible-playbook -i inventory.txt configure-server.yml
       - destroy-environment:
           id: ${CIRCLE_WORKFLOW_ID:0:7}
+      - revert-migrations:
+          id: ${CIRCLE_WORKFLOW_ID:0:7}          
 
   run-migrations:
     docker:
@@ -197,6 +222,8 @@ jobs:
             fi  
       - destroy-environment:
           id: ${CIRCLE_WORKFLOW_ID:0:7}
+      - revert-migrations:
+          id: ${CIRCLE_WORKFLOW_ID:0:7}          
 
   deploy-frontend:
     docker:
@@ -232,6 +259,8 @@ jobs:
             aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
       - destroy-environment:
           id: ${CIRCLE_WORKFLOW_ID:0:7}
+      - revert-migrations:
+          id: ${CIRCLE_WORKFLOW_ID:0:7}          
 
   deploy-backend:
     docker:
@@ -265,6 +294,8 @@ jobs:
             ansible-playbook -i inventory.txt deploy-backend.yml
       - destroy-environment:
           id: ${CIRCLE_WORKFLOW_ID:0:7}
+      - revert-migrations:
+          id: ${CIRCLE_WORKFLOW_ID:0:7}          
 
   smoke-test:
     docker:
@@ -308,6 +339,8 @@ jobs:
             fi
       - destroy-environment:
           id: ${CIRCLE_WORKFLOW_ID:0:7}
+      - revert-migrations:
+          id: ${CIRCLE_WORKFLOW_ID:0:7}          
 
 workflows:
   default:
