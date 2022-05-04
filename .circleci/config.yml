@@ -246,7 +246,7 @@ jobs:
       - run:
           name: Get backend url
           command: |
-            export BACKEND_IP=$(awk 'NR == 2' inventory.txt)
+            export BACKEND_IP=$(awk \'NR == 2\' inventory.txt)
             export API_URL="http://${BACKEND_IP}:3030"
             echo "${API_URL}"
       - run:
@@ -313,7 +313,7 @@ jobs:
           command: |
             cd .circleci/ansible
             cat inventory.txt
-            export BACKEND_IP=$(awk 'NR == 2' inventory.txt)
+            export BACKEND_IP=$(awk \'NR == 2\' inventory.txt)
             echo "${BACKEND_IP}"
       - run:
           name: Backend smoke test.
