@@ -14,9 +14,6 @@ commands:
           name: Destroy environments
           when: on_fail
           command: |
-            curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-            unzip awscli-bundle.zip
-            ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
             aws s3 rm s3://udapeople-<< parameters.id >> --recursive
             aws cloudformation delete-stack --stack-name udapeople-backend-<< parameters.id >>
             aws cloudformation delete-stack --stack-name udapeople-frontend-<< parameters.id >>
@@ -344,10 +341,6 @@ jobs:
             else
               return 1
             fi
-      - destroy-environment:
-          id: ${CIRCLE_WORKFLOW_ID:0:7}
-      - revert-migrations:
-          id: ${CIRCLE_WORKFLOW_ID:0:7}     
 
   cloudfront-update:
     docker:
