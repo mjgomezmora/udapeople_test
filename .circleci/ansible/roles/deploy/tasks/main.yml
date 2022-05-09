@@ -18,6 +18,13 @@
     production: yes
     state: present
 
+- name: create backend directory
+  become: yes
+  file:
+    path: ~/home/ubuntu
+    state: directory
+    mode: 0755
+
 - name: "move backend files to server."
   copy:
     src: /root/project/artifact.tar.gz
