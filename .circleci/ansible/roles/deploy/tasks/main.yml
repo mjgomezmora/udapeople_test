@@ -28,7 +28,7 @@
 - name: "move backend files to server."
   copy:
     src: /root/project/artifact.tar.gz
-    dest: ~/home/ubuntu
+    dest: /home/ubuntu
 
 - name: "install package dependencies"
   shell: |
