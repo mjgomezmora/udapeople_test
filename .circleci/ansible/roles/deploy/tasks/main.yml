@@ -21,7 +21,7 @@
 - name: create backend directory
   become: yes
   file:
-    path: ~/backend
+    path: ~/home/ubuntu/backend
     state: directory
     mode: 0755
 
