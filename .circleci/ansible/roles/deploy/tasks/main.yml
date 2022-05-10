@@ -18,30 +18,17 @@
     production: yes
     state: present
 
-- name: create backend directory
-  become: yes
-  file:
-    path: ~/backend
-    state: directory
-
-- name: "Move backend files to server."
+- name: "move backend files to server."
   copy:
-    src: ~/project/artifact.tar.gz
-    dest: ~/backend/artifact.tar.gz
+    src: /root/project/artifact.tar.gz
+    dest: ~/home/ubuntu
 
-- name: unpack backend files
-  become: yes
+- name: "install package dependencies"
   shell: |
-    cd ~/backend
-    tar -vxf artifact.tar.gz
-    rm -f artifact.tar.gz
-
-- name: start app
-  become: yes
-  shell: |
-    cd ~/backend
-    npm install
-    pm2 stop default
-    pm2 start npm -- run start
+    cd ~/home/ubuntu
+    tar -xzvf artifact.tar.gz -C backend
+    rm artifact.tar.gz
+    cd backend/
+    npm run build
     cd dist
-    pm2 start main.js --update-env
+    pm2 start npm --name backend -- start
