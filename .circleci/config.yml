@@ -11,15 +11,6 @@ commands:
         type: string
     steps:
         - run:
-          name: Install AWS CLI
-          when: on_fail
-          command: |
-            if ! [ -x "$(command -v aws)" ]; then
-            pip install awscli
-            else
-            echo "AWS CLI already installed"
-            fi    
-        - run:
           name: Destroy environments
           when: on_fail
           command: |
@@ -33,15 +24,6 @@ commands:
         id:
             type: string      
     steps:
-        - run:
-          name: Install curl
-          when: on_fail
-          command: |
-            if ! [ -x "$(command -v curl)" ]; then
-            apk add python curl
-            else
-            echo "curl already installed"
-            fi    
         - run:
             name: Revert migrations
             when: on_fail
