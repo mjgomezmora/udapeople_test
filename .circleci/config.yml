@@ -10,7 +10,7 @@ commands:
       id: 
         type: string
     steps:
-      - run:
+        - run:
           name: Install AWS CLI
           when: on_fail
           command: |
@@ -19,7 +19,7 @@ commands:
             else
             echo "AWS CLI already installed"
             fi    
-      - run:
+        - run:
           name: Destroy environments
           when: on_fail
           command: |
@@ -33,7 +33,7 @@ commands:
         id:
             type: string      
     steps:
-      - run:
+        - run:
           name: Install curl
           when: on_fail
           command: |
