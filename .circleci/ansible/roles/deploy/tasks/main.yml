@@ -21,14 +21,13 @@
 - name: create backend directory
   become: yes
   file:
-    path: ~/home/ubuntu/backend
+    path: ~/backend
     state: directory
-    mode: 0755
 
 - name: "Move backend files to server."
   copy:
     src: ~/project/artifact.tar.gz
-    dest: ~/backend/artifact.tar.gz
+    dest: ~/backend
 
 - name: unpack backend files
   become: yes
