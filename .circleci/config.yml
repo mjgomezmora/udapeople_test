@@ -46,7 +46,7 @@ commands:
           name: Revert migrations
           when: on_fail
           command: |
-              # Your Memstash or kvdb.io GET URL code goes here
+              # Your kvdb.io GET URL code goes here
               SUCCESS=$(curl --insecure  https://kvdb.io/ED7b9GoXA1w8dMeuzoAkqk/migration_<< parameters.id >>)
               # Logic for reverting the database state
               if (( $SUCCESS == 1 ));
@@ -404,7 +404,7 @@ jobs:
           command: |
             if [[ "${STACKS[@]}" =~ "${OldWorkflowID}" ]]
             then
-              aws s3 rm "s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7}" --recursive
+              aws s3 rm "s3://udapeople-kk1j287dhjppmz499" --recursive
               aws cloudformation delete-stack --stack-name "udapeople-backend-${OldWorkflowID:0:7}"
               aws cloudformation delete-stack --stack-name "udapeople-frontend-${OldWorkflowID:0:7}"            
             fi
