@@ -1,0 +1,4 @@
+URL01 = https://github.com/mjgomezmora/udapeople_test.git
+URL02 = http://udapeople-eafb23e.s3-website-us-east-1.amazonaws.com
+URL03 = http://dlx5ce4v8nybi.cloudfront.net
+URL04 = http://52.90.219.147:3030/api/status
