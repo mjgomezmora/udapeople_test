@@ -1,5 +1,5 @@
 URL01 = https://github.com/mjgomezmora/udapeople_test.git
-URL02 = http://udapeople-e012bf8.s3-website-us-east-1.amazonaws.com
-URL03 = http://d1zwq3mw89yarv.cloudfront.net
-URL04_01 = http://154.198.152.55:3030/api/status
-URL04_02= http://ec2-54-198-152-55.compute-1.amazonaws.com:3030/api/status
+URL02 = http://udapeople-be25dfd.s3-website-us-east-1.amazonaws.com
+URL03 = http://d2g5kxe4sb71lp.cloudfront.net
+URL04_01 = http://54.90.160.98:3030/api/status
+URL04_02= http://ec2-54-90-160-98.compute-1.amazonaws.com:3030/api/status
